@@ -1,0 +1,42 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Qianshan/User/managelist')}">信贷经理列表</a></li>
+			<li class="active"><a href="{:U('Qianshan/User/manageedit')}">增加信贷经理</a></li>
+		</ul>
+		<form method="post" class="form-horizontal" action="{:U('Qianshan/User/manageedit',array('id'=>$id))}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">姓名</label>
+					<div class="controls">
+						<input style="width:200px;" type="text" name="relname" id="relname" value="{$relname_info['name']}"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">手机</label>
+					<div class="controls">
+						<input style="width:200px;" type="text" name="mobile" id="mobile" value="{$userinfo['mobile']}"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">密码</label>
+					<div class="controls">
+						<input style="width:200px;" type="text" name="password" id="password" value=""/>
+					</div>
+				</div>
+				
+				
+				
+			</fieldset>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('ADD')}</button>
+				<a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	
+</body>
+</html>

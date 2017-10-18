@@ -1,0 +1,44 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Qianshan/product/index')}">产品列表</a></li>
+			<if condition="$proinfo['pid']  gt 0">
+				<li><a href="{:U('Qianshan/product/proadd',array('pid'=>$proinfo['pid']))}">编辑产品</a></li>
+				<li class="active"><a href="{:U('Qianshan/product/promod',array('pid'=>$proinfo['pid']))}">产品属性</a></li>
+			<else />
+				<li><a href="{:U('Qianshan/product/proadd')}">增加产品</a></li>
+			</if>
+			
+		</ul>
+		<form method="post" class="form-horizontal" action="{:U('Qianshan/product/proadd',array('pid'=>$pid))}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">产品名称</label>
+					<div class="controls">
+						<input type="text" name="proname" id="proname" value="{$proinfo['proname']}"/>
+					</div>
+				</div>
+				<foreach name="settings" item="vo">
+					<php>
+						$input_html = GetInputHtml($vo['name'],$vo['type'],$vo['content'],$proinfo[$vo['name']]);
+					</php>
+					<div class="control-group">
+						<label class="control-label">{$vo.title}</label>
+						<div class="controls">
+							{$input_html}
+						</div>
+					</div>
+				</foreach>
+				
+			</fieldset>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('ADD')}</button>
+				<a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

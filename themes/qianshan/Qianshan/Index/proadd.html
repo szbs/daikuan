@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_name}</title>
+<meta name="keywords" content="{$site_seo_keywords}" />
+<meta name="description" content="{$site_seo_description}">
+<meta name="author" content="ThinkCMF">
+<tc_include file="Public:head" />
+</head>
+
+<body class="body-white">
+	<tc_include file="Public:nav" />
+
+	<div class="container tc-main">
+		<div class="row">
+			<div class="span4 offset4">
+				<h2 class="text-center">增加产品</h2>
+				
+
+				<div class="tab-content">
+					<div class="tab-pane active" id="email">
+						<form class="form-horizontal js-ajax-form" action="{:U('user/register/doregister')}" method="post">
+		
+							<div class="control-group">
+								<input type="text" name="proname" placeholder="产品名称" class="span4">
+							</div>
+		
+							<div class="control-group">
+								<input type="text" name="password" placeholder="贷款期限" class="span4">
+							</div>
+							<div class="control-group">
+								<input type="text" name="password" placeholder="贷款额度" class="span4">
+							</div>
+							<div class="control-group">
+								<input type="text" name="password" placeholder="贷款利息" class="span4">
+							</div>
+							<div class="control-group">
+								<input type="text" name="password" placeholder="贷款手续费" class="span4">
+							</div>
+							<div class="control-group">
+								<input type="text" name="password" placeholder="申请职业" class="span4">
+							</div>
+							<div class="control-group">
+								<input type="text" name="password" placeholder="适用地区" class="span4">
+							</div>
+							<div class="control-group">
+								<input type="text" name="password" placeholder="申请资料" class="span4">
+							</div>
+							<div class="control-group">
+								<input type="text" name="password" placeholder="提前还款须知" class="span4">
+							</div>
+							<div class="control-group">
+								<input type="text" name="password" placeholder="逾期还款须知" class="span4">
+							</div>
+							<div class="control-group">
+								<input type="text" name="password" placeholder="逾期还款须知" class="span4">
+							</div>
+							<div class="control-group">
+								<input type="text" name="password" placeholder="提前还款须知" class="span4">
+							</div>
+							<div class="control-group">
+								<input type="text" name="password" placeholder="提前还款须知" class="span4">
+							</div>
+							
+							
+		
+									
+							<div class="control-group">
+								<button class="btn btn-primary js-ajax-submit span4" type="submit" data-wait="1500" style="margin-left: 0px;">确定</button>
+							</div>
+		
+							<div class="control-group" style="text-align: center;">
+								<p>
+									已有账号? <a href="{:leuu('user/login/index')}">点击此处登录</a>
+								</p>
+							</div>
+						</form>
+					
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		<tc_include file="Public:footer" />
+
+	</div>
+	<!-- /container -->
+
+	<tc_include file="Public:scripts" />
+</body>
+</html>

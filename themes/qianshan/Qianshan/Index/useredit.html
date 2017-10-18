@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_name}</title>
+<meta name="keywords" content="{$site_seo_keywords}" />
+<meta name="description" content="{$site_seo_description}">
+<meta name="author" content="ThinkCMF">
+<tc_include file="Public:head" />
+</head>
+
+<body class="body-white">
+	<tc_include file="Public:nav" />
+	<div class="container tc-main">
+        <div class="row">
+            <div class="span3">
+                <tc_include file="Public:usernav"/>
+            </div>
+            <div class="span8">
+				<div class="wrap js-check-wrap">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="{:U('Qianshan/Index/useredit')}">增加用户</a></li>
+					</ul>
+			        <form method="post" class="form-horizontal" action="{:U('Qianshan/Index/useredit',array('id'=>$userinfo['id']))}">
+						<fieldset>
+							<div class="control-group" style="display:block;background:#3e5771; color:#FFF;padding: 2px 20px;height:20px;">
+								<label class="control-label"></label>
+								<div class="controls">
+									<p id="typetips">基本情况</p>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">姓名</label>
+								<div class="controls">
+									<input style="width:80px;" type="text" name="name" id="name" value="{$userinfo['name']}"/>
+								</div>
+							</div>
+							
+							<div class="control-group">
+								<label class="control-label">身份证号码</label>
+								<div class="controls">
+									<input style="width:180px;" type="text" name="idno" id="idno" value="{$userinfo['idno']}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">生日</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="birthday" id="birthday" class="js-date" value="{$userinfo['birthday']}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">性别</label>
+								<div class="controls">
+									<select name="sex" style="width:50px;">
+										<option value="1" {$lixidw2_select[1]['fen']}>男</option>
+										<option value="2" {$lixidw2_select[1]['li']}>女</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">平均月薪</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="salary" id="salary" value="{$userinfo['salary']}"/>元
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">个税缴纳时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="income_tax_duration" id="income_tax_duration" value="{$userinfo['income_tax_duration']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">公积金基数</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="housing_fund_base_fee" id="housing_fund_base_fee" value="{$userinfo['housing_fund_base_fee']}"/>元
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">公积金月平均缴费金额</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="housing_fund_fee" id="housing_fund_fee" value="{$userinfo['housing_fund_fee']}"/>元
+								</div>
+							</div>
+							
+							<div class="control-group">
+								<label class="control-label">公积金连续缴纳时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="housing_fund_duration" id="housing_fund_duration" value="{$userinfo['housing_fund_duration']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">职业</label>
+								<div class="controls">
+									<select name="sex" style="width:100px;">
+										<option value="" ></option>
+										<option value="民企" {$lixidw2_select[1]}>民企</option>
+										<option value="公务员" {$lixidw2_select[1]}>公务员</option>
+										<option value="事业单位" {$lixidw2_select[1]}>事业单位</option>
+										<option value="公立医院" {$lixidw2_select[1]}>公立医院</option>
+										<option value="公立学校" {$lixidw2_select[1]}>公立学校</option>
+										<option value="银行" {$lixidw2_select[1]}>银行</option>
+										<option value="国企" {$lixidw2_select[1]}>国企</option>
+										<option value="500强" {$lixidw2_select[1]}>500强</option>
+										<option value="律师" {$lixidw2_select[1]}>律师</option>
+									</select>
+									
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">入职时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="occupation_duration" id="occupation_duration" value="{$userinfo['occupation_duration']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">社保月平均缴纳金额</label>
+								<div class="controls">
+									<input style="width:30px;" type="text" name="social_security_fee" id="social_security_fee" value="{$userinfo['social_security_fee']}"/>元
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">社保连续缴纳时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="social_security_duration" id="social_security_duration" value="{$userinfo['social_security_duration']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">芝麻信用分数</label>
+								<div class="controls">
+									<input style="width:30px;" type="text" name="sesame_credit" id="sesame_credit" value="{$userinfo['sesame_credit']}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">支付宝注册时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="alipay_register_date" id="alipay_register_date" value="{$userinfo['alipay_register_date']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">信用卡授信额度</label>
+								<div class="controls">
+									<input style="width:30px;" type="text" name="credit_line" id="credit_line" value="{$userinfo['credit_line']}"/>元
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">信用卡使用时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="credit_card_duration" id="credit_card_duration" value="{$userinfo['credit_card_duration']}"/>月
+								</div>
+							</div>
+							<div class="control-group" style="display:block;background:#3e5771; color:#FFF;padding: 7px 20px;">
+								<label class="control-label"></label>
+								<div class="controls">
+									<p id="typetips">汽车情况</p>
+								</div>
+								
+							</div>
+							<div class="control-group">
+								<label class="control-label">汽车类型</label>
+								<div class="controls">
+									<select name="car_hand" style="width:100px;">
+										<option value="1" {$lixidw2_select[1]['fen']}>一手车</option>
+										<option value="2" {$lixidw2_select[1]['li']}>二手车</option>
+									</select>
+
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">车龄</label>
+								<div class="controls">
+									<input style="width:30px;" type="text" name="car_age" id="car_age" value="{$userinfo['car_age']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">车估值</label>
+								<div class="controls">
+									<input style="width:30px;" type="text" name="car_value" id="car_value" value="{$userinfo['car_value']}"/>万元
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">物业登记时间</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="oroperty_register_date" id="oroperty_register_date" value="{$userinfo['oroperty_register_date']}"/>元
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">是否有物业出租</label>
+								<div class="controls">
+									<input type="radio" value="1" name="rental_property_check" <if condition="$userinfo['rental_property_check'] eq 1"> checked="checked"</if> />是
+									<input type="radio" value="0" name="rental_property_check" <if condition="$userinfo['rental_property_check'] eq 0"> checked="checked"</if> />否
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">按揭物业月供金额</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="mortgage_property_fee" id="mortgage_property_fee" value="{$userinfo['mortgage_property_fee']}"/>元
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">按揭物业时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="mortgage_property_duration" id="mortgage_property_duration" value="{$userinfo['mortgage_property_duration']}"/>月
+								</div>
+							</div>
+
+							<div class="control-group">
+								<label class="control-label">已结清按揭房产的时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="mortgage_property_paid_off_duration" id="mortgage_property_paid_off_duration" value="{$userinfo['mortgage_property_paid_off_duration']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">pos安装时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="pos_register_date" id="pos_register_date" value="{$userinfo['pos_register_date']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">pos月流水金额</label>
+								<div class="controls">						
+									<input style="width:100px;" type="text" name="pos_money" id="pos_money" value="{$userinfo['pos_money']}"/>元
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">是否是公司法人</label>
+								<div class="controls">
+									<input type="radio" value="0" name="company_owner" <if condition="$userinfo['company_owner'] eq 0"> checked="checked"</if> />职工
+									<input type="radio" value="1" name="company_owner"  <if condition="$userinfo['company_owner'] eq 1"> checked="checked"</if> />个体户
+									<input type="radio" value="2" name="company_owner" <if condition="$userinfo['company_owner'] eq 2"> checked="checked"</if> />法人
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">占公司股份百分比</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="company_share" id="company_share" value="{$userinfo['company_share']}"/>％
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">公司注册资金</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="company_capital" id="company_capital" value="{$userinfo['company_capital']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">公司注册时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="company_register_duration" id="company_register_duration" value="{$userinfo['company_register_duration']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">公司月营业额</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="company_sales" id="company_sales" value="{$userinfo['company_sales']}"/>万元
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">保单类型</label>
+								<div class="controls">
+									<select name="insurance_type" style="width:100px;">
+										<option value="1" {$lixidw2_select[1]['fen']}>分红型</option>
+										<option value="2" {$lixidw2_select[1]['li']}>传统型</option>
+										<option value="2" {$lixidw2_select[1]['li']}>万能险</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">保单生效时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="insurance_effective_time" id="insurance_effective_time" value="{$userinfo['insurance_effective_time']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">保单缴金额</label>
+								<div class="controls">
+									<select name="insurance_fee_type" style="width:80px;">
+										<option value="1" {$lixidw2_select[1]['fen']}>月交</option>
+										<option value="2" {$lixidw2_select[1]['li']}>季交</option>
+										<option value="2" {$lixidw2_select[1]['li']}>年交</option>
+										<option value="2" {$lixidw2_select[1]['li']}>趸交</option>
+										
+									</select>
+									<input style="width:100px;" type="text" name="insurance_monthly_fee" id="insurance_monthly_fee" value="{$userinfo['insurance_monthly_fee']}"/>元
+								</div>
+							</div>
+
+							<div class="control-group">
+								<label class="control-label">保单已缴时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="insurance_fee_time" id="insurance_fee_time" value="{$userinfo['insurance_fee_time']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">淘宝注册时长</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="taobao_register_duration" id="taobao_register_duration" value="{$userinfo['taobao_register_duration']}"/>月
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">淘宝信用等级</label>
+								<div class="controls">
+									<select name="taobao_credit_line" style="width:40px;">
+										<option value="1" {$lixidw2_select[1]['fen']}>1</option>
+										<option value="2" {$lixidw2_select[1]['li']}>2</option>
+										<option value="2" {$lixidw2_select[1]['li']}>3</option>
+										<option value="2" {$lixidw2_select[1]['li']}>4</option>
+										<option value="2" {$lixidw2_select[1]['li']}>5</option>
+									</select>
+									<select name="taobao_credit_type" style="width:60px;">
+										<option value="1" {$lixidw2_select[1]['fen']}>星</option>
+										<option value="2" {$lixidw2_select[1]['li']}>钻</option>
+										<option value="2" {$lixidw2_select[1]['li']}>皇冠</option>
+									</select>
+									
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">淘宝好评率</label>
+								<div class="controls">
+									<input style="width:100px;" type="text" name="taobao_comment_rate" id="taobao_comment_rate" value="{$userinfo['taobao_comment_rate']}"/>%
+								</div>
+								
+							</div>
+							<div class="control-group">
+								<label class="control-label">京东会员级别</label>
+								<div class="controls">
+									<select name="jingdong_credit_line" style="width:100px;">
+										<option value=""></option>
+										<php>
+											$jingdong_credit_line_select[1] = $userinfo['jingdong_credit_line'] == 1 ? 'selected':'';
+											$jingdong_credit_line_select[2] = $userinfo['jingdong_credit_line'] == 2 ? 'selected':'';
+										</php>
+										<option value="1" {$jingdong_credit_line_select[1]}>银牌</option>
+										<option value="2" {$jingdong_credit_line_select[2]}>金牌</option>
+									</select>
+									<input style="width:100px;" type="text" name="jingdong_rate" id="jingdong_rate" value="{$userinfo['jingdong_rate']}"/>分
+								</div>
+								
+							</div>
+							<div class="control-group">
+								<label class="control-label">所属信贷经理</label>
+								<div class="controls">
+									{$loan_manager_text}
+								</div>
+								
+							</div>
+
+							
+						</fieldset>
+						<div class="form-actions">
+							<button type="submit" class="btn btn-primary js-ajax-submit">{:L('ADD')}</button>
+							<a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+						</div>
+					</form>
+
+				</div>
+      		</div>
+		</div>
+		<tc_include file="Public:footer" />
+	</div>
+	<!-- /container -->
+
+	<tc_include file="Public:scripts" />
+</body>
+</html>

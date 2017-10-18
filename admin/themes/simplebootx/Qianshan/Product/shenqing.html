@@ -1,0 +1,215 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('Qianshan/product/shenqing',array("pid"=>$proinfo["pid"]))}">申请条件</a></li>
+			<!--
+			<li><a href="{:U('Qianshan/product/shenqingadd',array("pid"=>$proinfo["pid"]))}">添加条件</a></li>-->
+			<li><a href="{:U('Qianshan/product/index')}">返回产品列表</a></li>
+		</ul>
+		<form class="well form-search" name="myform" id="myform" method="post" action="{:U('Qianshan/product/shenqing')}">
+            当前产品为： {$proinfo['name']}<br/>选项:
+            <input type="hidden" name="pid" value="{$proinfo["pid"]}" />
+            <input type="hidden" name="cid" value="{$coninfo["cid"]}" />
+            <select name="optionname" style="width:200px;" id="optionname" onchange="xiangmu_change(this.value);">
+            	<option value="" ></option>
+            	<foreach name="canshus" item="vo">
+            		<php>
+            			if ($coninfo['optionname'] == $vo['csid']){
+            				$optionname_select = ' selected';
+            			}else{
+            				$optionname_select = ' ';
+            			}
+
+            		</php>
+            		<option value="{$vo.csid}" {$optionname_select}>{$vo.csname}</option>
+            	</foreach>
+            </select>
+            <select name="equationtype" style="width:120px;" id="equationtype">
+            	<foreach name="ops" item="vo">
+            		<php>
+            			if ($coninfo['equationtype'] == $vo['opid']){
+            				$equationtype_select = ' selected';
+            			}else{
+            				$equationtype_select = ' ';
+            			}
+
+            		</php>
+            		<option value="{$vo.opid}" {$equationtype_select}>{$vo.opname}</option>
+            	</foreach>
+            </select>
+            <input type="text" name="content" value="{$coninfo.content}" id="content"/>
+            <span id="occpation_check" style="display:none;">
+            	<input name="content1[]" value="民企" type="checkbox">民企
+            	<input name="content1[]" value="公务员" type="checkbox">公务员
+            	<input name="content1[]" value="事业单位" type="checkbox">事业单位
+            	<input name="content1[]" value="公立医院" type="checkbox">公立医院
+            	<input name="content1[]" value="公立学校" type="checkbox">公立学校
+            	<input name="content1[]" value="银行" type="checkbox">银行
+            	<input name="content1[]" value="国企" type="checkbox">国企
+            	<input name="content1[]" value="500强" type="checkbox">500强
+            	<input name="content1[]" value="律师" type="checkbox">律师
+            </span>
+            <span id="marry_status_check" style="display:none;">
+            	
+            	<input name="content1[]" value="未婚" type="checkbox" >未婚
+            	<input name="content1[]" value="已婚" type="checkbox">已婚
+            	<input name="content1[]" value="离婚" type="checkbox">离婚
+            	
+            </span>
+            <span id="insurance_type_check" style="display:none;">
+            	
+            	<input name="content1[]" value="分红型" type="checkbox" >分红型
+            	<input name="content1[]" value="传统型" type="checkbox">传统型
+            	<input name="content1[]" value="万能险" type="checkbox">万能险
+            </span>
+            <span id="gender_check" style="display:none;">
+            	
+            	<input name="content1[]" value="男" type="checkbox" >男
+            	<input name="content1[]" value="女" type="checkbox">女
+            </span>
+            <span id="educational_check" style="display:none;">
+            	<input name="content1[]" value="本科" type="checkbox" >本科
+            	<input name="content1[]" value="硕士" type="checkbox">硕士
+           		<input name="content1[]" value="博士" type="checkbox">博士
+            </span>
+            <span id="car_hand_check" style="display:none;">
+            	<input name="content1[]" value="1" type="checkbox" >一手车
+            	<input name="content1[]" value="2" type="checkbox">二手车
+           		
+            </span>
+            <span id="educational_check" style="display:none;">
+            	<input name="content1[]" value="本科" type="checkbox" >本科
+            	<input name="content1[]" value="硕士" type="checkbox">硕士
+           		<input name="content1[]" value="博士" type="checkbox">博士
+            </span>
+            <span id="rental_property_check_check" style="display:none;">
+            	<input name="content1[]" value="是" type="checkbox" >是
+            	
+            </span>
+            <span id="company_owner_check" style="display:none;">
+            	<input name="content1[]" value="是" type="checkbox" >是
+            </span>
+            <span id="taobao_credit_line_check" style="display:none;">
+            	大于
+	            <select name="content1[]" style="width:120px;" >
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>	            	
+	            </select>
+	            <select name="content1[]" style="width:120px;" >
+					<option value="1">星</option>
+					<option value="2">钻</option>
+					<option value="3">皇冠</option>
+	            </select>
+            </span>
+            
+            <span id="jingdong_credit_line_check" style="display:none;">
+            	大于
+	            <select name="content1[]" style="width:120px;" >
+					<option value="1">银牌</option>
+					<option value="2">金牌</option>
+					
+	            </select>
+	            <input type="text" name="content1[]" style="width:80px;" />分
+            </span>
+            <span id="insurance_fee_type_check" style="display:none;">
+            	<select name="content1[]" style="width:80px;">
+            		<option value="" ></option>
+            		<option value="月缴" >月缴</option>
+            		<option value="季缴" >季缴</option>
+            		<option value="年缴" >年缴</option>
+            	</select> 大于
+            	<input type="text" name="content1[]" style="width:80px;" />元
+            	
+            </span>
+            <input type="submit" class="btn btn-primary" value="确定" />
+
+        </form>       
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th width="50">ID</th>
+					<th>选项</th>
+					<th>条件</th>
+					<th>内容</th>
+					<!--<th>{:L('STATUS')}</th>-->
+					<th width="120">{:L('ACTIONS')}</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<foreach name="proconlist" item="vo">
+				<tr>
+					<td>{$vo.cid}</td>
+					<td>{$vo.optionname}</td>
+					<td>{$vo.equationtype}</td>
+					<td>{$vo.content}</td>
+					
+					<!--<td>{$user_statuses[$vo['user_status']]}</td>-->
+					<td>
+						
+						<a  href="{:U('Qianshan/product/shenqing',array('pid'=>$proinfo['pid'],'cid'=>$vo['cid']))}">{:L('EDIT')}</a>
+						 | <a  href="{:U('Qianshan/product/shenqing',array('type'=>'del','pid'=>$proinfo['pid'],cid=>$vo['cid']))}">{:L('DELETE')}</a>
+						
+					</td>
+				</tr>
+				</foreach>
+			</tbody>
+		</table>
+		<div class="pagination">{$page}</div>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script>
+
+		function xiangmu_change(xiangmuchange){
+			//alert(xiangmuchange);//car_hand
+
+			var xms=new Array();
+			var orther_dis = true;
+			xms[0] = 'occpation';
+			xms[1] = 'marry_status';
+			xms[2] = 'insurance_type';
+			xms[3] = 'insurance_fee_type';
+			xms[4] = 'gender';
+			xms[5] = 'educational';
+			xms[6] = 'rental_property_check';
+			xms[7] = 'company_owner';
+			xms[8] = 'taobao_credit_line';
+			xms[9] = 'jingdong_credit_line';
+			xms[10] = 'car_hand';
+
+			
+			var arr_c1 = document.getElementsByName("content1[]") ;
+			for(var i1=0;i1<arr_c1.length;i1++){
+				 if(arr_c1[i1].checked == true)  
+				  {  
+				  	arr_c1[i1].checked = false; 
+				  }  
+			}
+
+			for(var i=0;i<xms.length;i++){
+				
+				document.getElementById(xms[i] + "_check").style.display='none';
+				if (xiangmuchange == xms[i]){
+					document.getElementById(xms[i] + "_check").style.display='';
+					
+					orther_dis = false;
+				}
+			}			
+
+			if (!orther_dis){
+				document.getElementById("equationtype").style.display = 'none';
+				document.getElementById("content").style.display = 'none';
+			}else{
+				document.getElementById("equationtype").style.display = '';
+				document.getElementById("content").style.display = '';
+			}
+			
+		}
+	</script>
+</body>
+</html>

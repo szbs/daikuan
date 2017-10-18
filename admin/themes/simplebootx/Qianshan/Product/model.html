@@ -1,0 +1,46 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('Qianshan/product/model')}">模型列表</a></li>
+			<li><a href="{:U('Qianshan/product/modeladd')}">增加模型</a></li>
+		</ul>
+		<form method="post" class="js-ajax-form" action="{:U('Qianshan/product/modelorders')}">
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th width="50">模型ID</th>
+					<th>排序</th>
+					<th>模型名称</th>
+					<th>状态</th>
+					<th>产品数量</th>
+					<th>添加时间</th>
+					<th width="120">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<foreach name="lists" item="vo">
+				<tr>
+					<td>{$vo.mid}</td>
+					<td><input name='displayorders[{$vo.mid}]' type='text' size='3' value='{$vo.displayorder}' class='input input-order'></td>
+					<td>{$vo.modelname}</td>
+					<td><if condition="$vo['status']">开启<else />关闭</if></td>
+					<td>{$vo.num}</td>
+					<td>{:date('Y-m-d H:i:s', $vo['dateline'])}</td>
+					<td>
+						<a href='{:U("Qianshan/product/modeladd",array("mid"=>$vo["mid"]))}'>编辑</a> 
+					</td>
+				</tr>
+				</foreach>
+			</tbody>
+		</table>
+		<div class="pagination">{$page}</div>
+		<div class="table-actions">
+			<button type="submit" class="btn btn-primary btn-small js-ajax-submit">{:L('SORT')}</button>
+		</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

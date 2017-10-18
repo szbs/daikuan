@@ -1,0 +1,110 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Qianshan/product/canshu')}">参数列表</a></li>
+			<li class="active"><a href="{:U('Qianshan/product/canshugadd')}">增加参数</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('Qianshan/product/canshuadd',array('sid'=>$settinginfo['sid']))}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">名称</label>
+					<div class="controls">
+						<input type="text" name="title" value="{$settinginfo['title']}">中文名称
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">变量名</label>
+					<div class="controls">
+						<input type="text" name="name" value="{$settinginfo['name']}">英文名称
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">类型</label>
+					<div class="controls">
+						<select name="typeid" onchange="ajaxtype(this.value);">
+							<foreach name="types" item="vo">
+							<php>$typeselect = $settinginfo['type'] == $vo['typeid'] ? 'selected':'';</php>
+							<option value="{$vo.typeid}" {$typeselect}>{$vo.typename}（{$vo.typeid}）</option>
+							</foreach>
+						</select>
+					</div>
+				</div>
+				<div class="control-group" id="miaoshu" style="display:'';">
+					<label class="control-label">简单描述</label>
+					<div class="controls">
+						<textarea name="miaoshu" style="width: 600px; height: 50px;" placeholder="简单描述">{$settinginfo['type']}</textarea>
+					</div>
+				</div>
+				<div class="control-group" id="textdanwei" style="display:'';">
+					<label class="control-label">单位</label>
+					<div class="controls">
+						<input type="text" name="danwei" size="3">
+					</div>
+				</div>
+				<div class="control-group" id="contentdiv" style="display:none;">
+					<label class="control-label">字段内容</label>
+					<div class="controls">
+						<textarea name="content" style="width: 98%; height: 50px;" placeholder="字段内容">{$settinginfo['content']}</textarea>
+						<br/><br/>
+						<p id="contenttips"></p>
+					</div>
+				</div>
+				<div class="control-group" style="display:block;background:#3e5771; color:#FFF;padding: 7px 20px;">
+					<label class="control-label"></label>
+					<div class="controls">
+						<p id="typetips">参数选项（可选）</p>
+					</div>
+					
+				</div>
+				<div class="control-group" id="textwidth" style="display:'';">
+					<label class="control-label">表单显示长度</label>
+					<div class="controls">
+						<input type="text" name="widthpx" size="3"  placeholder="可选">px
+					</div>
+				</div>
+				<div class="control-group" id="textsize" style="display:'';">
+					<label class="control-label">内容最大长度</label>
+					<div class="controls">
+						<input type="text" name="sizepx" size="3" placeholder="可选">
+					</div>
+				</div>
+				<div class="control-group" id="morenzhi" style="display:'';">
+					<label class="control-label">默认值</label>
+					<div class="controls">
+						<input type="text" name="morenzhi" size="3" placeholder="可选">
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('ADD')}</button>
+				<a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript">
+
+		function ajaxtype(typevalue){
+			document.getElementById("typetips").innerHTML = ' 参数选项';
+			if (typevalue == 'text'){
+				document.getElementById("textwidth").style.display = '';
+				document.getElementById("textsize").style.display = '';
+				document.getElementById("contentdiv").style.display = 'none';
+				document.getElementById("contenttips").innerHTML = ' 参数选项';
+			}else if (typevalue == 'radio'){
+				document.getElementById("textwidth").style.display = 'none';
+				document.getElementById("textsize").style.display = 'none';
+				document.getElementById("contentdiv").style.display = '';
+				document.getElementById("contenttips").innerHTML = '只在项目为可选时有效，每行一个字段，等号前面为字段索引(建议用数字)，后面为内容，例如:<br/>1 = 光电鼠标<br/>2 = 机械鼠标<br/>3 = 没有鼠标<br/>注意: 字段确定后请勿修改索引和内容的对应关系，但仍可以新增字段。如需调换显示顺序，可以通过移动整行的上下位置来实现';
+			}else if (typevalue == 'checkbox'){
+				document.getElementById("contentdiv").style.display = '';
+				document.getElementById("contenttips").innerHTML = '只在项目为可选时有效，每行一个字段，等号前面为字段索引(建议用数字)，后面为内容，例如:<br/>1 = 光电鼠标<br/>2 = 机械鼠标<br/>3 = 没有鼠标<br/>注意: 字段确定后请勿修改索引和内容的对应关系，但仍可以新增字段。如需调换显示顺序，可以通过移动整行的上下位置来实现';
+			}
+			
+		}
+		ajaxtype("{$settinginfo['type']}");
+	</script>
+</body>
+</html>
